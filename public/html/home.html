@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/reset.css">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .home {
+            width: 100%;
+            height: 140rem;
+            position: relative
+        }
+
+        /* 搜索框 */
+        .header {
+            width: 100%;
+            height: .46rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            top: 0;
+            left: 0;
+        }
+
+        .header>input {
+            width: 3.01rem;
+            height: .31rem;
+            padding: 0 0.9rem;
+            border: none;
+            background: url(../img/search_btn.png) no-repeat .73rem #F5F5F5;
+            ;
+            background-size: .14rem;
+            border-radius: .18rem;
+        }
+
+        .header>span>img {
+            width: 0.24rem;
+            height: .17rem;
+        }
+
+        /* 二级路由 */
+        .router-two {
+            width: 100%;
+            height: .45rem;
+            background: #fff;
+            top: .46rem;
+            left: 0;
+        }
+
+        .router_two_ul {
+            height: .45rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .router_two_ul li {
+            color: #666;
+            font-size: .14rem;
+        }
+
+        /* 选项卡 */
+        .tab {
+            width: 100%;
+            height: .44rem;
+            top: .89rem;
+            left: 0;
+        }
+
+        .tab button {
+            width: 50%;
+            height: 100%;
+            background: #fff;
+            border: none;
+        }
+
+        .content {
+            width: 100%;
+            height: 15rem;
+            overflow: hidden;
+        }
+
+        .content>div {
+            width: 3rem;
+            height: 2rem;
+        }
+
+        .active {
+            color: red;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="home">
+        <!-- 头部 -->
+        <div class="header">
+            <input type="text" placeholder="搜索商品 分类 功效">
+            <span><img src="../img/search_list2.png"></span>
+        </div>
+        <!-- 二级路由 -->
+        <div class="router-two">
+            <ul class="router_two_ul">
+                <li>首页</li>
+                <li>极速免税店</li>
+                <li>母婴</li>
+                <li>轻奢</li>
+                <li>名品特卖</li>
+            </ul>
+        </div>
+        <!-- 选项卡 -->
+        <div class="tab">
+            <button v-for="(item,index) in btns" :class="index == activeIndex?'active':''"
+                @click="handleToggle(index)">{{item}}</button>
+            <div class="content">
+                <div v-for="(item,index) in contents" v-show="activeIndex==index">{{item}}</div>
+            </div>
+        </div>
+        <!-- <div class="content">
+            <div class="contentTop">
+                <Ul>
+                    <li v-for="(item,index) in contentTop" @click="handleClick(index)">{{item}}</li>
+                </Ul>
+            </div>
+            <Component :is="com"></Component>
+        </div> -->
+    </div>
+</body>
+
+</html>
+<script>
+    // import Component from "@/component"
+    // import Componentwo from "@/componentwo"
+    let vm = new Vue({
+        el: ".tab",
+        data: {
+            activeIndex: 0,
+            btns: ["今日10点上新", "明日10点预告"],
+            contents: [
+                "ooo",
+                'www'
+            ],
+            // contentTop:["今日10点上新", "明日10点预告"],
+            // com:"Content-com",
+        },
+        // components:{
+        //     "Content-com" :Content,
+        //     "Contentwo-com":Contentwo
+        // },
+        methods: {
+            handleToggle(index) {
+                this.activeIndex = index;
+            }
+            // handleClick(index){
+            //     switch(index){
+            //         case 0 :
+            //             this.com = "Content-com";
+            //             break;
+            //         case 1 :
+            //             this.com = "Contenttwo-com";
+            //             break;
+            //     }
+            // }
+        }
+    })
+</script>
